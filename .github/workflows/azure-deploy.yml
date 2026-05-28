@@ -1,0 +1,33 @@
+name: Despliegue Automático a Azure Web App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Permite disparar el despliegue manualmente desde GitHub
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Código del Repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Instalar Dependencias de Producción
+        run: |
+          npm install
+
+      - name: Desplegar en Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          # Reemplaza 'aegis-soc-agent' por el nombre único que le asignes a tu Web App en Azure
+          app-name: 'aegis-soc-agent'
+          # El perfil de publicación descargado desde el portal de Azure e insertado en los Secrets de GitHub
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
