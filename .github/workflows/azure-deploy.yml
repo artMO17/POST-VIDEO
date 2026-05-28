@@ -27,7 +27,7 @@ jobs:
       - name: Desplegar en Azure App Service
         uses: azure/webapps-deploy@v2
         with:
-          # Reemplaza 'aegis-soc-agent' por el nombre único que le asignes a tu Web App en Azure
-          app-name: 'aegis-soc-agent'
+          # Nombre exacto de tu Web App en Azure
+          app-name: 'POST-VIDEO-Wapp'
           # El perfil de publicación descargado desde el portal de Azure e insertado en los Secrets de GitHub
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
