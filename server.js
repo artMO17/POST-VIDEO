@@ -36,12 +36,12 @@ if (useActualAzureOpenAI) {
       apiVersion: process.env.AZURE_OPENAI_API_VERSION || "2024-02-15-preview",
       deployment: process.env.AZURE_OPENAI_DEPLOYMENT || "gpt-4o"
     });
-    console.log("🚀 Azure OpenAI cliente inicializado correctamente.");
+    console.log("Azure OpenAI cliente inicializado correctamente.");
   } catch (error) {
-    console.error("❌ Error al inicializar cliente de Azure OpenAI:", error.message);
+    console.error("Error al inicializar cliente de Azure OpenAI:", error.message);
   }
 } else {
-  console.log("ℹ️ Ejecutando en Modo de Simulación de Inteligencia Artificial (sin costo de API).");
+  console.log("Ejecutando en Modo de Simulación de Inteligencia Artificial (sin costo de API).");
 }
 
 // ==========================================
@@ -320,7 +320,7 @@ ${JSON.stringify(alert, null, 2)}`;
 
     return parsedReport;
   } catch (error) {
-    console.error("❌ Fallo durante llamada a Azure OpenAI. Reintentando con simulación local. Error:", error.message);
+    console.error("Fallo durante llamada a Azure OpenAI. Reintentando con simulación local. Error:", error.message);
     return generateHighFidelityMockAnalysis(alert);
   }
 }
@@ -332,34 +332,34 @@ ${JSON.stringify(alert, null, 2)}`;
 async function sendToTeamsChannel(report) {
   const webhookUrl = process.env.TEAMS_WEBHOOK_URL;
   if (!webhookUrl || webhookUrl.trim() === "" || webhookUrl.indexOf("your-teams-webhook-url") !== -1) {
-    console.log("ℹ️ Envío de Teams omitido (URL del webhook no configurada en .env).");
+    console.log("Envio de Teams omitido (URL del webhook no configurada en .env).");
     return { success: false, reason: "Webhook URL not configured" };
   }
 
   // Mapear severidad a color de Teams (Hex)
   let severityColor = "A8A8A8"; // Gris por defecto
-  let severityIcon = "⚠️";
+  let severityIcon = "[ALERTA]";
   
   switch (report.severity?.toLowerCase()) {
     case "critical":
       severityColor = "FF003C"; // Rojo Intenso
-      severityIcon = "🚨 [CRÍTICO]";
+      severityIcon = "[CRÍTICO]";
       break;
     case "high":
       severityColor = "FF7300"; // Naranja
-      severityIcon = "🔥 [ALTO]";
+      severityIcon = "[ALTO]";
       break;
     case "medium":
       severityColor = "FFCC00"; // Amarillo/Ámbar
-      severityIcon = "⚡ [MEDIO]";
+      severityIcon = "[MEDIO]";
       break;
     case "low":
       severityColor = "00F0FF"; // Cian/Azul claro
-      severityIcon = "🛡️ [BAJO]";
+      severityIcon = "[BAJO]";
       break;
     case "needs human review":
       severityColor = "A87FFF"; // Violeta/Morado
-      severityIcon = "🔍 [REVISIÓN REQUERIDA]";
+      severityIcon = "[REVISIÓN REQUERIDA]";
       break;
   }
 
@@ -500,14 +500,14 @@ async function sendToTeamsChannel(report) {
     const response = await sendHttpRequest(webhookUrl, adaptiveCard);
     
     if (response.ok) {
-      console.log("✅ Adaptive Card enviada correctamente a Microsoft Teams.");
+      console.log("Adaptive Card enviada correctamente a Microsoft Teams.");
       return { success: true };
     } else {
-      console.error("❌ Falló el envío a Teams. Estado:", response.status);
+      console.error("Fallo el envío a Teams. Estado:", response.status);
       return { success: false, reason: `HTTP ${response.status}` };
     }
   } catch (error) {
-    console.error("❌ Excepción al enviar webhook de Teams:", error.message);
+    console.error("Excepción al enviar webhook de Teams:", error.message);
     return { success: false, reason: error.message };
   }
 }
@@ -564,7 +564,7 @@ app.post("/api/alerts", async (req, res) => {
       return res.status(400).json({ error: "Estructura de alerta inválida. Falta 'id' o 'name'." });
     }
 
-    console.log(`📥 Recibida alerta de seguridad para análisis: [${incomingAlert.id}] - ${incomingAlert.name}`);
+    console.log(`Recibida alerta de seguridad para análisis: [${incomingAlert.id}] - ${incomingAlert.name}`);
     
     // Iniciar análisis cognitivo
     const analysisReport = await analyzeSecurityAlert(incomingAlert);
@@ -586,7 +586,7 @@ app.post("/api/alerts", async (req, res) => {
 
     res.status(201).json(incidentRecord);
   } catch (error) {
-    console.error("❌ Error en ingesta /api/alerts:", error.message);
+    console.error("Error en ingesta /api/alerts:", error.message);
     res.status(500).json({ error: "Fallo interno en el análisis del Agente SOC." });
   }
 });
@@ -616,7 +616,7 @@ app.post("/api/simulation/trigger", async (req, res) => {
   };
 
   try {
-    console.log(`🔮 Simulación activada para: ${freshAlert.name}`);
+    console.log(`Simulación activada para: ${freshAlert.name}`);
     const analysisReport = await analyzeSecurityAlert(freshAlert);
 
     const incidentRecord = {
@@ -638,7 +638,7 @@ app.post("/api/simulation/trigger", async (req, res) => {
 
     res.json(incidentRecord);
   } catch (error) {
-    console.error("❌ Falló simulación:", error.message);
+    console.error("Fallo simulación:", error.message);
     res.status(500).json({ error: error.message });
   }
 });
@@ -658,7 +658,7 @@ app.post("/api/incidents/:id/remediate", (req, res) => {
     return res.status(404).json({ error: "Incidente no encontrado." });
   }
 
-  console.log(`🛠️ Ejecutando acción SOAR para [${id}]: ${actionType} sobre ${target}`);
+  console.log(`Ejecutando acción SOAR para [${id}]: ${actionType} sobre ${target}`);
 
   // Simular la ejecución de la contención
   const logTimestamp = new Date().toISOString();
@@ -724,11 +724,11 @@ if (incidentsHistory.length === 0) {
 app.listen(PORT, () => {
   console.log(`
 ============================================================
-🛡️  AEGIS SOC ANALYST AI AGENT - SERVICE RUNNING  🛡️
+  AEGIS SOC ANALYST AI AGENT - SERVICE RUNNING
 ============================================================
-🔌 Backend API:     http://localhost:${PORT}
-🖥️  SOC Console:     http://localhost:${PORT}
-📦 Modo de OpenAI:   ${useActualAzureOpenAI ? "LIVE AZURE OPENAI" : "SIMULATION Fallback"}
+  Backend API:     http://localhost:${PORT}
+  SOC Console:     http://localhost:${PORT}
+  Modo de OpenAI:   ${useActualAzureOpenAI ? "LIVE AZURE OPENAI" : "SIMULATION Fallback"}
 ============================================================
   `);
 });

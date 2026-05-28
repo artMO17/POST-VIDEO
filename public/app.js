@@ -461,13 +461,13 @@ function renderTeamsCardPreview(incident) {
   let severityKey = incident.severity?.toLowerCase() || "low";
   if (severityKey === "needs human review") severityKey = "review";
 
-  let severityIcon = "⚠️";
+  let severityIcon = "[ALERTA]";
   switch (severityKey) {
-    case "critical": severityIcon = "🚨 [CRÍTICO]"; break;
-    case "high": severityIcon = "🔥 [ALTO]"; break;
-    case "medium": severityIcon = "⚡ [MEDIO]"; break;
-    case "low": severityIcon = "🛡️ [BAJO]"; break;
-    case "review": severityIcon = "🔍 [REVISIÓN REQUERIDA]"; break;
+    case "critical": severityIcon = "[CRÍTICO]"; break;
+    case "high": severityIcon = "[ALTO]"; break;
+    case "medium": severityIcon = "[MEDIO]"; break;
+    case "low": severityIcon = "[BAJO]"; break;
+    case "review": severityIcon = "[REVISIÓN REQUERIDA]"; break;
   }
 
   // Visualizar si ya fue entregado a Teams (simulamos exitoso si está en el historial o configurado)

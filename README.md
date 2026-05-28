@@ -1,4 +1,4 @@
-# Aegis SOC AI Agent — Security Command Center 🛡️
+# Aegis SOC AI Agent — Security Command Center
 
 **Aegis SOC Agent** es un Agente de Inteligencia Artificial autónomo de nivel de producción diseñado para actuar como un Analista de Ciberseguridad L3 en tiempo real. Utilizando **Azure OpenAI (GPT-4o)**, **Azure Monitor** y **Log Analytics**, Aegis automatiza la ingesta de alertas de seguridad, realiza análisis cognitivos con razonamiento **Chain-of-Thought (CoT)**, correlaciona logs crudos, mapea amenazas bajo el framework de **MITRE ATT&CK** y despacha reportes interactivos codificados cromáticamente a **Microsoft Teams**.
 
@@ -6,7 +6,7 @@ Además, el proyecto incluye un **SOC Command Center** interactivo y futurista d
 
 ---
 
-## 🌟 Características Clave
+## Características Clave
 
 1. **Ingesta Automatizada**: API robusta `/api/alerts` compatible con activadores de Azure Logic Apps.
 2. **Análisis Cognitivo y Correlación**:
@@ -20,7 +20,7 @@ Además, el proyecto incluye un **SOC Command Center** interactivo y futurista d
 
 ---
 
-## 🛠️ Requisitos e Instalación Local
+## Requisitos e Instalación Local
 
 ### 1. Requisitos Previos
 * **Node.js** v18 o superior.
@@ -55,7 +55,7 @@ Abre en tu navegador la URL: **`http://localhost:3000`** para interactuar con la
 
 ---
 
-## ☁️ Integración en Producción con la Nube de Azure
+## Integración en Producción con la Nube de Azure
 
 Para desplegar Aegis SOC Agent en producción e ingestar alertas reales, sigue los siguientes pasos:
 
@@ -128,7 +128,7 @@ AzureDiagnostics
 
 ---
 
-## 💬 Integración con Microsoft Teams Webhook
+## Integración con Microsoft Teams Webhook
 
 Para que Aegis entregue las **Adaptive Cards** en vivo en tu canal de Teams:
 
@@ -143,7 +143,7 @@ Para que Aegis entregue las **Adaptive Cards** en vivo en tu canal de Teams:
 
 ---
 
-## 🔬 Escenarios de Simulación Incluidos
+## Escenarios de Simulación Incluidos
 
 El Command Center de Aegis viene pre-equipado con 4 escenarios de ciberataques reales para evaluar las capacidades cognitivas del agente AI:
 
@@ -162,6 +162,6 @@ El Command Center de Aegis viene pre-equipado con 4 escenarios de ciberataques r
 
 ---
 
-## 🛡️ Seguridad y Robustez de Producción
+## Seguridad y Robustez de Producción
 * **Razonamiento Oculto (CoT)**: Aegis utiliza Chain-of-Thought internamente mediante prompts de sistema estructurados. El razonamiento crudo se almacena localmente en la base de datos de auditoría del SOC para auditorías forenses, pero se remueve del reporte de Teams para mantener la concisión para los tomadores de decisiones.
 * **Seguridad de Datos**: Admite arquitecturas de Azure Private Link y autenticación basada en identidades administradas (Managed Identities) para interacciones seguras de punta a punta con recursos Azure.

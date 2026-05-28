@@ -1,10 +1,10 @@
-# Guion de Presentación: Aegis SOC Analyst AI Agent 🛡️
+# Guion de Presentación: Aegis SOC Analyst AI Agent
 
 Este guion está diseñado para ayudarte a grabar un video demostrativo o realizar una presentación en vivo de **Aegis SOC Agent**. Está estructurado para captar la atención desde el primer segundo, explicar la arquitectura en la nube de Azure de forma clara y hacer una demostración práctica de alto impacto visual.
 
 ---
 
-## ⏱️ Estructura del Video (Duración estimada: 5 minutos)
+## Estructura del Video (Duración estimada: 5 minutos)
 
 | Sección | Tiempo | Foco |
 | :--- | :--- | :--- |
@@ -16,9 +16,9 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-## 🎬 Guion Paso a Paso
+## Guion Paso a Paso
 
-### 🎬 Sección 1: El Gancho e Introducción (0:00 - 0:45)
+### Sección 1: El Gancho e Introducción (0:00 - 0:45)
 * **Apoyo Visual**: Grábate a ti mismo a cámara o muestra la pantalla de inicio del SOC Command Center con el reloj del sistema corriendo en vivo.
 * **Acción**: Comienza con voz enérgica y profesional.
 
@@ -29,7 +29,7 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-### 🎬 Sección 2: La Arquitectura en Azure (0:45 - 1:45)
+### Sección 2: La Arquitectura en Azure (0:45 - 1:45)
 * **Apoyo Visual**: Puedes mostrar un diagrama de flujo en tus diapositivas o desplazarte por la sección de arquitectura del archivo `README.md` en tu VS Code.
 
 > **[VOZ / PRESENTADOR]**: 
@@ -42,7 +42,7 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-### 🎬 Sección 3: Demo 1: Ingesta y Análisis AI (1:45 - 3:00)
+### Sección 3: Demo 1: Ingesta y Análisis AI (1:45 - 3:00)
 * **Apoyo Visual**: Muestra la pestaña del navegador con el **SOC Command Center** en vivo en internet.
 * **Acción**: Haz clic en el botón de recarga (F5) para mostrar el estado inicial. Luego, haz clic en el primer botón de simulación: **"Ejecución sospechosa de Ransomware en Servidor de Base de Datos"**.
 
@@ -59,7 +59,7 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-### 🎬 Sección 4: Demo 2: Teams y Contención SOAR (3:00 - 4:15)
+### Sección 4: Demo 2: Teams y Contención SOAR (3:00 - 4:15)
 * **Apoyo Visual**: Desplázate por el panel de la derecha, mostrando la tarjeta de Teams y la terminal SOAR.
 * **Acción**: Desplázate en el panel central hasta ver el botón verde **"EJECUTAR CONTENCIÓN: [ISOLATE_VM]"** y haz clic en él mientras observas la terminal de abajo.
 
@@ -76,7 +76,7 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-### 🎬 Sección 5: Conclusiones y Cierre (4:15 - 5:00)
+### Sección 5: Conclusiones y Cierre (4:15 - 5:00)
 * **Apoyo Visual**: Grábate a ti mismo a cámara o muestra la vista general del portal con el incidente mitigado en verde.
 
 > **[VOZ / PRESENTADOR]**: 
@@ -88,7 +88,7 @@ Este guion está diseñado para ayudarte a grabar un video demostrativo o realiz
 
 ---
 
-## 💡 Consejos para la Grabación del Video:
+## Consejos para la Grabación del Video:
 1. **Calidad de Audio**: Asegúrate de grabar con un micrófono claro, ya que es un video altamente técnico y las explicaciones de ciberseguridad deben entenderse perfectamente.
 2. **Fluidez**: Practica el clic del botón SOAR y observa cómo reacciona la terminal un par de veces antes de grabar para que tu explicación coincida perfectamente con el cambio visual en pantalla.
 3. **Pausas**: Cuando des clic en el botón de simulación, haz una pequeña pausa dramática de 1 segundo para mostrar el cartel de "PROCESSING..." en el header antes de que carguen los resultados. Esto le da un aire de "procesamiento cognitivo en vivo" espectacular al video.
