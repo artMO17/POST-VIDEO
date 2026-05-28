@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aegis SOC Command Center - AI Security Agent</title>
+  <!-- Google Fonts: Outfit & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cyber-theme">
+  <!-- Background glowing canvas effect -->
+  <div class="glow-bg"></div>
+
+  <!-- Header System bar -->
+  <header class="system-header">
+    <div class="logo-area">
+      <div class="logo-icon-wrapper">
+        <i class="fa-solid fa-shield-halved aegis-logo-icon"></i>
+        <div class="logo-pulse"></div>
+      </div>
+      <div class="logo-text">
+        <h1>AEGIS <span class="accent-glow">SOC AGENT</span></h1>
+        <span class="sub-text">Autonomous Security Operations Center AI</span>
+      </div>
+    </div>
+    
+    <div class="telemetry-bar">
+      <div class="telemetry-item">
+        <span class="telemetry-label"><i class="fa-solid fa-server"></i> STATUS</span>
+        <span class="telemetry-value active-status">ONLINE</span>
+      </div>
+      <div class="telemetry-item">
+        <span class="telemetry-label"><i class="fa-solid fa-brain"></i> MODEL</span>
+        <span class="telemetry-value" id="model-indicator">Azure OpenAI (GPT-4o)</span>
+      </div>
+      <div class="telemetry-item">
+        <span class="telemetry-label"><i class="fa-solid fa-microchip"></i> AGENT</span>
+        <span class="telemetry-value scanning-glow" id="agent-status">IDLE</span>
+      </div>
+      <div class="telemetry-item hidden-mobile">
+        <span class="telemetry-label"><i class="fa-solid fa-clock"></i> SYSTEM TIME</span>
+        <span class="telemetry-value" id="clock-display">00:00:00 UTC</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="dashboard-grid">
+    
+    <!-- LEFT PANEL: Incidents Feed & Simulator -->
+    <section class="grid-panel panel-left">
+      <div class="panel-header">
+        <h2><i class="fa-solid fa-list-check"></i> FEED DE INCIDENTES</h2>
+        <span class="badge-count" id="incidents-count">0</span>
+      </div>
+      
+      <!-- Simulation Quick Launch -->
+      <div class="simulation-launcher">
+        <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Centro de Simulación (Ataques)</h3>
+        <p class="sim-help-text">Haz clic en un escenario para simular la ingesta de alertas de Azure Monitor en tiempo real:</p>
+        <div class="simulation-buttons" id="sim-buttons-container">
+          <!-- Creados dinámicamente -->
+          <div class="loader-dots">Cargando simulador...</div>
+        </div>
+      </div>
+
+      <!-- Live Incidents Feed -->
+      <div class="incidents-feed-container">
+        <div class="incidents-feed-list" id="incidents-list">
+          <!-- Dinámico -->
+        </div>
+      </div>
+    </section>
+
+    <!-- MIDDLE PANEL: Detail Inspection Center -->
+    <section class="grid-panel panel-middle" id="incident-detail-panel">
+      <!-- Se llena dinámicamente con JavaScript. Estado por defecto: -->
+      <div class="no-selection-message">
+        <i class="fa-solid fa-fingerprint empty-icon"></i>
+        <h3>Consola de Inspección Aegis</h3>
+        <p>Selecciona un incidente del panel lateral o lanza una simulación para auditar el análisis cognitivo y las acciones del agente AI.</p>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: Adaptive Card & SOAR Console -->
+    <section class="grid-panel panel-right">
+      
+      <!-- Upper Section: Adaptive Card Teams Preview -->
+      <div class="teams-preview-section">
+        <div class="panel-header">
+          <h2><i class="fa-brands fa-microsoft-teams"></i> PREVISUALIZACIÓN DE TEAMS</h2>
+          <span class="teams-status-badge" id="teams-sent-indicator"><i class="fa-solid fa-circle-check"></i> Webhook</span>
+        </div>
+        
+        <div class="teams-card-wrapper">
+          <div class="teams-card-frame">
+            <div class="teams-card" id="teams-adaptive-card">
+              <!-- Renderizado dinámico de la tarjeta Teams -->
+              <div class="empty-card-state">
+                <i class="fa-regular fa-paper-plane"></i>
+                <p>La previsualización de la Adaptive Card enviada al canal de Teams se mostrará aquí al seleccionar un incidente.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lower Section: Real-time SOAR Terminal -->
+      <div class="soar-console-section">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-terminal"></i> EJECUCIÓN TÁCTICA SOAR</h2>
+          <span class="soar-status-badge" id="soar-mode-indicator"><i class="fa-solid fa-gears"></i> AUTO-OFF</span>
+        </div>
+        
+        <div class="terminal-wrapper">
+          <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">aegis-soar-remediation-engine.sh</span>
+          </div>
+          <div class="terminal-body" id="soar-terminal-logs">
+            <div class="terminal-line system-line">[SYSTEM] Aegis SOAR engine inicializado de forma segura en modo simulación de remediación.</div>
+            <div class="terminal-line system-line">[SYSTEM] Esperando confirmación de incidentes y ejecución de contención activa...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Configuration Overlay Modal -->
+  <div class="settings-action-fab" id="open-settings-btn">
+    <i class="fa-solid fa-sliders"></i>
+  </div>
+
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-gears"></i> CONFIGURACIÓN DE AEGIS AGENT</h2>
+        <button class="close-modal-btn" id="close-settings-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="config-form">
+          <div class="form-group">
+            <label for="modal-webhook-url"><i class="fa-brands fa-microsoft-teams"></i> URL de Webhook de Microsoft Teams</label>
+            <input type="text" id="modal-webhook-url" placeholder="https://outlook.office.com/webhook/..." />
+            <small class="form-help">Ingresa la URL del webhook o Workflow de Teams para probar la entrega real del reporte.</small>
+          </div>
+          <div class="modal-status-zone" id="config-status-indicator">
+            <div class="status-indicator-pill">
+              <span class="indicator-dot" id="env-openai-dot"></span>
+              <span id="env-openai-text">Buscando llaves de Azure OpenAI...</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-primary" id="save-config-btn">Aplicar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

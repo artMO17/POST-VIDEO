@@ -1,0 +1,25 @@
+{
+  "name": "aegis-soc-agent",
+  "version": "1.0.0",
+  "description": "Production-ready SOC Analyst AI Agent using Azure OpenAI and Azure Monitor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "soc",
+    "agent",
+    "openai",
+    "azure",
+    "security"
+  ],
+  "author": "Antigravity SOC Agent Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "openai": "^4.52.0"
+  }
+}

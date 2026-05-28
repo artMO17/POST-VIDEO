@@ -1,0 +1,148 @@
+[
+  {
+    "id": "SEC-ALERT-2026-8901",
+    "name": "Ejecución sospechosa de Ransomware en Servidor de Base de Datos",
+    "timestamp": "2026-05-28T17:15:30Z",
+    "provider": "Microsoft Defender for Cloud",
+    "severity": "High",
+    "asset": {
+      "name": "sql-prod-db-01.corp.internal",
+      "type": "Virtual Machine",
+      "sensitivity": "High",
+      "ipAddress": "10.240.12.44",
+      "owner": "Finance Data Operations",
+      "os": "Windows Server 2022"
+    },
+    "rawLogs": [
+      {
+        "timeGenerated": "2026-05-28T17:12:05Z",
+        "eventId": 4688,
+        "source": "Microsoft-Windows-Security-Auditing",
+        "message": "A new process has been created. Creator Subject: S-1-5-21-397... New Process Name: C:\\Windows\\Temp\\update_service.exe. Process Command Line: C:\\Windows\\Temp\\update_service.exe -encrypt C:\\Database\\ProdData\\"
+      },
+      {
+        "timeGenerated": "2026-05-28T17:13:10Z",
+        "eventId": 4688,
+        "source": "Microsoft-Windows-Security-Auditing",
+        "message": "A new process has been created. Creator Subject: S-1-5-21-397... New Process Name: C:\\Windows\\System32\\vssadmin.exe. Process Command Line: vssadmin.exe delete shadows /all /quiet"
+      },
+      {
+        "timeGenerated": "2026-05-28T17:14:02Z",
+        "eventId": 1,
+        "source": "Microsoft-Windows-Sysmon",
+        "message": "File created or modified. TargetFilename: C:\\Database\\ProdData\\customer_ledger.mdf.locked, Process: update_service.exe"
+      },
+      {
+        "timeGenerated": "2026-05-28T17:14:55Z",
+        "eventId": 3,
+        "source": "Microsoft-Windows-Sysmon",
+        "message": "Network connection detected. Process: update_service.exe, DestinationIp: 185.220.101.4 (Known Tor Exit Node), DestinationPort: 443"
+      }
+    ]
+  },
+  {
+    "id": "SEC-ALERT-2026-5542",
+    "name": "Viaje imposible y descarga anómala de archivos en masa (Exfiltración)",
+    "timestamp": "2026-05-28T16:30:12Z",
+    "provider": "Azure Active Directory Identity Protection",
+    "severity": "Medium",
+    "asset": {
+      "name": "alejandro.sanchez@enterprise.com",
+      "type": "User Identity / Entra ID",
+      "sensitivity": "High",
+      "ipAddress": "194.26.29.82",
+      "owner": "Finance Department",
+      "department": "Finance"
+    },
+    "rawLogs": [
+      {
+        "timeGenerated": "2026-05-28T16:05:00Z",
+        "eventId": "SigninLogs",
+        "source": "Azure AD / Entra ID",
+        "message": "Successful sign-in. User: alejandro.sanchez@enterprise.com, IP: 84.120.45.12, Location: Madrid, Spain, Device: Windows 11 Laptop (Intune managed)"
+      },
+      {
+        "timeGenerated": "2026-05-28T16:20:10Z",
+        "eventId": "SigninLogs",
+        "source": "Azure AD / Entra ID",
+        "message": "Successful sign-in (via API/Web). User: alejandro.sanchez@enterprise.com, IP: 194.26.29.82, Location: St. Petersburg, Russia (Anomalous IP), Device: Unknown Linux User-Agent (Curl)"
+      },
+      {
+        "timeGenerated": "2026-05-28T16:22:45Z",
+        "eventId": "SharePointAuditEvent",
+        "source": "Office 365 Security",
+        "message": "Mass file download detected. Site: Corporate Financials, Items: 142 PDFs (Tax_Records_2025.zip, Board_Meeting_Q1.pdf, Bank_Details_Vendors.xlsx), TotalVolume: 12.4 GB, UserAgent: curl/7.81.0"
+      }
+    ]
+  },
+  {
+    "id": "SEC-ALERT-2026-1194",
+    "name": "Asignación sospechosa de rol Propietario en la Suscripción de Producción",
+    "timestamp": "2026-05-28T15:45:00Z",
+    "provider": "Azure Activity Logs",
+    "severity": "High",
+    "asset": {
+      "name": "sub-prod-enterprise-01",
+      "type": "Azure Subscription Scope",
+      "sensitivity": "High",
+      "ipAddress": "N/A",
+      "owner": "Cloud Governance Team",
+      "resourceId": "/subscriptions/2f9de4e1-231a-4d43-a60e-b715a31b4028"
+    },
+    "rawLogs": [
+      {
+        "timeGenerated": "2026-05-28T15:40:15Z",
+        "eventId": "ActivityLog-Write",
+        "source": "Azure Resource Manager",
+        "message": "Role assignment write action started. Caller: service-principal-automation@enterprise.com, TargetUser: rogue-guest-temp@gmail.com, Role: Owner (/subscriptions/2f9de4e1-231a-4d43-a60e-b715a31b4028/providers/Microsoft.Authorization/roleAssignments/e3d40bc2)"
+      },
+      {
+        "timeGenerated": "2026-05-28T15:41:00Z",
+        "eventId": "ActivityLog-Write",
+        "source": "Azure Resource Manager",
+        "message": "Role assignment write action completed successfully. Caller: service-principal-automation@enterprise.com, TargetUser: rogue-guest-temp@gmail.com, Role: Owner"
+      },
+      {
+        "timeGenerated": "2026-05-28T15:42:30Z",
+        "eventId": "AuditLogs",
+        "source": "Entra ID",
+        "message": "Guest user invitation sent. Inviter: service-principal-automation@enterprise.com, Target: rogue-guest-temp@gmail.com. Status: Completed. Invited 5 minutes ago."
+      }
+    ]
+  },
+  {
+    "id": "SEC-ALERT-2026-0391",
+    "name": "Comportamiento de Red Anómalo en Dispositivo IoT (Sensor)",
+    "timestamp": "2026-05-28T14:10:00Z",
+    "provider": "Microsoft Defender for IoT",
+    "severity": "Low",
+    "asset": {
+      "name": "iot-sensor-temp-42.factory.internal",
+      "type": "IoT Device",
+      "sensitivity": "Low",
+      "ipAddress": "192.168.42.112",
+      "owner": "Factory Operations Team",
+      "firmware": "v2.4.1"
+    },
+    "rawLogs": [
+      {
+        "timeGenerated": "2026-05-28T14:05:00Z",
+        "eventId": "NetworkFlow",
+        "source": "Core Switch Gateway",
+        "message": "Anomaly detected: Device 192.168.42.112 sent 18.5 MB of data to external host 152.199.19.161 on port 8080. Normal baseline is 15 KB/hour."
+      },
+      {
+        "timeGenerated": "2026-05-28T14:07:22Z",
+        "eventId": "Syslog",
+        "source": "iot-sensor-temp-42",
+        "message": "crond[412]: info: running scheduled system update script check_firmware.sh"
+      },
+      {
+        "timeGenerated": "2026-05-28T14:08:44Z",
+        "eventId": "DNSLogs",
+        "source": "Internal DNS Server",
+        "message": "Query completed. Client: 192.168.42.112, Query: download.factory-updates.cdn.microsoft.com, Answer: 152.199.19.161"
+      }
+    ]
+  }
+]
